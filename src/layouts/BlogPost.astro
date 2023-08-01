@@ -1,0 +1,66 @@
+---
+import MainLayout from '@layouts/main.astro';
+
+interface Props {
+  frontmatter: {
+    layout: string;
+    title: string;
+    description: string;
+    pubDate: string;
+    author: string;
+    image?: {
+      url: string;
+      alt: string;
+    };
+    tags?: string[];
+  };
+}
+
+const {
+  frontmatter: {
+    image: heroImage,
+    title,
+    description,
+    pubDate,
+    author,
+    tags,
+  },
+} = Astro.props;
+---
+
+<MainLayout title={title}>
+  <article>
+    <header
+      class={`grid place-content-center place-items-center ${
+        !heroImage && 'bg-slate-400'
+      }`}
+    >
+      {
+        heroImage && (
+          <img
+            src={heroImage.url}
+            alt=""
+            class="col-span-full row-span-full"
+          />
+        )
+      }
+      <div class="col-span-full row-span-full">
+        <h1 class="text-center text-xl font-bold">{title}</h1>
+        <p>{description}</p>
+        {tags}
+        {
+          tags && (
+            <div class="flex gap-x-2">
+              {tags.map((tag) => (
+                <div>#{tag}</div>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </header>
+    <p>Published on: {pubDate.slice(0, 10)}</p>
+    <p>Written by {author}</p>
+    <slot />
+  </article>
+</MainLayout>
