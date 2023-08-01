@@ -1,6 +1,6 @@
 ---
-import { Nav } from '../components/Nav';
-import { Footer } from '../components/Footer';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 interface Props {
   title: string;
@@ -26,9 +26,7 @@ const {
     <meta name="description" content={description} />
   </head>
   <body>
-    <header>
-      <Nav />
-    </header>
+    <Header />
     <main>
       <slot />
     </main>
