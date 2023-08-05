@@ -1,11 +1,8 @@
 ---
-import type { BlogPostFrontmatter } from '@types';
+import type { BlogPost } from '@types';
 
 type Props = {
-  post: {
-    url: string | undefined; // TODO: figure out why TS errors when I remove "undefined"
-    frontmatter: BlogPostFrontmatter;
-  };
+  post: BlogPost;
 };
 
 const {
