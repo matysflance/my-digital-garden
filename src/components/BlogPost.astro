@@ -1,0 +1,38 @@
+---
+import type { BlogPostFrontmatter } from '@types';
+
+type Props = {
+  post: {
+    url: string | undefined; // TODO: figure out why TS errors when I remove "undefined"
+    frontmatter: BlogPostFrontmatter;
+  };
+};
+
+const {
+  post: {
+    url,
+    frontmatter: { title, description, pubDate, tags },
+  },
+} = Astro.props;
+---
+
+<li>
+  <a href={url}>
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <time datetime={pubDate}>
+      {pubDate.slice(0, 10)}
+    </time>
+    <div class="flex gap-x-2">
+      {
+        tags && (
+          <div class="flex gap-x-2">
+            {tags.map((tag) => (
+              <div>#{tag}</div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </a>
+</li>
