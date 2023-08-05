@@ -1,19 +1,7 @@
 ---
 import MainLayout from '@layouts/Main.astro';
 
-type Props = {
-  frontmatter: {
-    title: string;
-    description: string;
-    pubDate: string;
-    author: string;
-    image?: {
-      url: string;
-      alt: string;
-    };
-    tags?: string[];
-  };
-};
+import type { Props } from './BlogPost';
 
 const {
   frontmatter: {
