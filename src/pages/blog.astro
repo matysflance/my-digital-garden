@@ -1,5 +1,5 @@
 ---
-import BlogPost from '@components/BlogPost.astro';
+import PostsList from '@components/PostsList.astro';
 import MainLayout from '@layouts/Main.astro';
 
 import type { BlogPostFrontmatter } from '@types';
@@ -14,7 +14,5 @@ const blogPosts = await Astro.glob<BlogPostFrontmatter>(
   description="Whenever I feel like expressing my thoughts on some topic in a more elaborate manner, I’m going to do it here."
 >
   <h1 class="font-bold text-4xl">Blog</h1>
-  <ul class="list-disc list ps-8">
-    {blogPosts.map((post) => <BlogPost post={post} />)}
-  </ul>
+  <PostsList posts={blogPosts} />
 </MainLayout>

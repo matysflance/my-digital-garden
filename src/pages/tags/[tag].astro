@@ -1,6 +1,7 @@
 ---
 // TODO: figure out why TS alias didn't work here
 import MainLayout from '../../layouts/Main.astro';
+import PostsList from '../../components/PostsList.astro';
 
 import type { BlogPostFrontmatter, BlogPost } from '../../types';
 
@@ -46,12 +47,5 @@ const filteredPosts: BlogPost[] = posts.filter((post) => {
 
 <MainLayout title={`${tag} posts`}>
   <p>Posts tagged with {tag}</p>
-  <ul class="list-disc list ps-8">
-    {
-      filteredPosts.map((post) => {
-        // <BlogPost post={post} />
-        return <li>{post.frontmatter.title}</li>;
-      })
-    }
-  </ul>
+  <PostsList posts={filteredPosts} />
 </MainLayout>

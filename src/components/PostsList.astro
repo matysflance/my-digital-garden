@@ -1,0 +1,13 @@
+---
+import BlogPost from '@components/BlogPost.astro';
+
+// type Props = {
+//   posts: BlogPost[],
+// }
+
+const { posts } = Astro.props;
+---
+
+<ul class="list-disc list ps-8">
+  {posts.map((post) => <BlogPost post={post} />)}
+</ul>
