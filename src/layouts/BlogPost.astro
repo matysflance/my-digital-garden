@@ -1,7 +1,7 @@
 ---
 import MainLayout from '@layouts/Main.astro';
 
-interface Props {
+type Props = {
   frontmatter: {
     title: string;
     description: string;
@@ -13,7 +13,7 @@ interface Props {
     };
     tags?: string[];
   };
-}
+};
 
 const {
   frontmatter: {
