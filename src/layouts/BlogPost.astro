@@ -1,18 +1,19 @@
 ---
 import MainLayout from '@layouts/Main.astro';
 
-import type { Props } from './BlogPost';
+import type { MarkdownLayoutProps } from 'astro';
+import type { BlogPostFrontmatter } from '../types';
+
+type Props = MarkdownLayoutProps<BlogPostFrontmatter>;
 
 const {
-  frontmatter: {
-    image: heroImage,
-    title,
-    description,
-    pubDate,
-    author,
-    tags,
-  },
-} = Astro.props;
+  image: heroImage,
+  title,
+  description,
+  pubDate,
+  author,
+  tags,
+} = Astro.props.frontmatter;
 ---
 
 <MainLayout title={title}>
