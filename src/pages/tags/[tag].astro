@@ -3,16 +3,16 @@
 import MainLayout from '../../layouts/Main.astro';
 import PostsList from '../../components/PostsList.astro';
 
-import type { BlogPostFrontmatter, BlogPost } from '../../types';
+import type { TBlogPostFrontmatter, TBlogPost } from '../../types';
 
 export async function getStaticPaths() {
-  const blogPosts = await Astro.glob<BlogPostFrontmatter>(
+  const blogPosts = await Astro.glob<TBlogPostFrontmatter>(
     '../posts/*.md'
   );
 
   // this gets all tags possible, so that these don't have to be hardcoded anywhere
   const tags: string[] = blogPosts.reduce(
-    (acc: string[], post: BlogPost) => {
+    (acc: string[], post: TBlogPost) => {
       if (post.frontmatter.tags) {
         return [...acc, ...post.frontmatter.tags];
       } else {
@@ -31,12 +31,12 @@ export async function getStaticPaths() {
 }
 
 type Props = {
-  posts: BlogPost[];
+  posts: TBlogPost[];
 };
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-const filteredPosts: BlogPost[] = posts.filter((post) => {
+const filteredPosts: TBlogPost[] = posts.filter((post) => {
   if (!tag) {
     return false;
   }

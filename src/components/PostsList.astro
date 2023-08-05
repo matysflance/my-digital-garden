@@ -1,9 +1,11 @@
 ---
 import BlogPost from '@components/BlogPost.astro';
 
-// type Props = {
-//   posts: BlogPost[],
-// }
+import type { TBlogPost } from '@types';
+
+type Props = {
+  posts: TBlogPost[];
+};
 
 const { posts } = Astro.props;
 ---

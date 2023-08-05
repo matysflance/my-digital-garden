@@ -2,9 +2,9 @@
 import PostsList from '@components/PostsList.astro';
 import MainLayout from '@layouts/Main.astro';
 
-import type { BlogPostFrontmatter } from '@types';
+import type { TBlogPostFrontmatter } from '@types';
 
-const blogPosts = await Astro.glob<BlogPostFrontmatter>(
+const blogPosts = await Astro.glob<TBlogPostFrontmatter>(
   './posts/*.md'
 );
 ---

@@ -1,4 +1,4 @@
-type BlogPostFrontmatter = {
+type TBlogPostFrontmatter = {
   title: string;
   description: string;
   pubDate: string;
@@ -10,14 +10,14 @@ type BlogPostFrontmatter = {
   tags?: string[];
 };
 
-type BlogPost = {
+type TBlogPost = {
   url: string | undefined; // TODO: figure out why TS errors when I remove "undefined"
-  frontmatter: BlogPostFrontmatter;
+  frontmatter: TBlogPostFrontmatter;
 };
 
-type MainLayoutProps = {
+type TMainLayoutProps = {
   title: string;
   description?: string;
 };
 
-export type { BlogPostFrontmatter, BlogPost, MainLayoutProps };
+export type { TBlogPostFrontmatter, TBlogPost, TMainLayoutProps };
