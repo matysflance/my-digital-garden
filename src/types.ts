@@ -7,7 +7,7 @@ type TBlogPostFrontmatter = {
     url: string;
     alt: string;
   };
-  tags?: string[];
+  tags: string[];
 };
 
 type TBlogPost = {
