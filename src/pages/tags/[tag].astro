@@ -1,9 +1,8 @@
 ---
-// TODO: figure out why TS alias didn't work here
-import MainLayout from '../../layouts/Main.astro';
-import PostsList from '../../components/PostsList.astro';
+import MainLayout from '@layouts/Main.astro';
+import PostsList from '@components/PostsList.astro';
 
-import type { TBlogPostFrontmatter, TBlogPost } from '../../types';
+import type { TBlogPostFrontmatter, TBlogPost } from '@types';
 
 export async function getStaticPaths() {
   const blogPosts = await Astro.glob<TBlogPostFrontmatter>(
