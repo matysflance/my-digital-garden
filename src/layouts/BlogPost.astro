@@ -40,7 +40,7 @@ const {
           tags && (
             <div class="flex gap-x-2">
               {tags.map((tag) => (
-                <div>#{tag}</div>
+                <a href={`/tags/${tag}`}>#{tag}</a>
               ))}
             </div>
           )

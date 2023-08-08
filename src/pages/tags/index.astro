@@ -1,0 +1,25 @@
+---
+import MainLayout from '@layouts/Main.astro';
+
+import type { TBlogPostFrontmatter } from '@types';
+
+const blogPosts = await Astro.glob<TBlogPostFrontmatter>(
+  '../posts/*.md'
+);
+
+const allTags = blogPosts.map((post) => post.frontmatter.tags).flat();
+const uniqueTags = [...new Set(allTags)];
+---
+
+<MainLayout title="Tags">
+  <h1 class="font-bold text-4xl">Tags</h1>
+  <ul class="list-disc list ps-8">
+    {
+      uniqueTags.map((tag) => (
+        <li>
+          <a href={`/tags/${tag}`}>#{tag}</a>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>
