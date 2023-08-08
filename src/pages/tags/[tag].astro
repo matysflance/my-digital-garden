@@ -10,42 +10,31 @@ export async function getStaticPaths() {
     '../posts/*.md'
   );
 
-  // this gets all tags possible, so that these don't have to be hardcoded anywhere
-  const tags: string[] = blogPosts.reduce(
-    (acc: string[], post: TBlogPost) => {
-      if (post.frontmatter.tags) {
-        return [...acc, ...post.frontmatter.tags];
-      } else {
-        return acc;
-      }
-    },
-    []
-  );
+  const allTags = blogPosts
+    .map((post) => post.frontmatter.tags)
+    .flat();
+  const uniqueTags = [...new Set(allTags)];
 
-  return tags.map((tag) => {
+  return uniqueTags.map((tag) => {
+    const tagPosts = blogPosts.filter((post) => {
+      return post.frontmatter.tags.includes(tag);
+    });
+
     return {
-      params: { tag: tag },
-      props: { posts: blogPosts },
+      params: { tag },
+      props: { tagPosts },
     };
   });
 }
 
 type Props = {
-  posts: TBlogPost[];
+  tagPosts: TBlogPost[];
 };
 const { tag } = Astro.params;
-const { posts } = Astro.props;
-
-const filteredPosts: TBlogPost[] = posts.filter((post) => {
-  if (!tag) {
-    return false;
-  }
-
-  return post.frontmatter.tags?.includes(tag);
-});
+const { tagPosts } = Astro.props;
 ---
 
 <MainLayout title={`${tag} posts`}>
   <p>Posts tagged with {tag}</p>
-  <PostsList posts={filteredPosts} />
+  <PostsList posts={tagPosts} />
 </MainLayout>
