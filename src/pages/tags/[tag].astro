@@ -19,21 +19,33 @@ export async function getStaticPaths() {
       return post.frontmatter.tags.includes(tag);
     });
 
+    const sortedTagPosts = tagPosts.sort((a, b) => {
+      if (a.frontmatter.pubDate > b.frontmatter.pubDate) {
+        return -1;
+      }
+
+      if (a.frontmatter.pubDate < b.frontmatter.pubDate) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     return {
       params: { tag },
-      props: { tagPosts },
+      props: { sortedTagPosts },
     };
   });
 }
 
 type Props = {
-  tagPosts: TBlogPost[];
+  sortedTagPosts: TBlogPost[];
 };
 const { tag } = Astro.params;
-const { tagPosts } = Astro.props;
+const { sortedTagPosts } = Astro.props;
 ---
 
 <MainLayout title={`${tag} posts`}>
   <p>Posts tagged with {tag}</p>
-  <PostsList posts={tagPosts} />
+  <PostsList posts={sortedTagPosts} />
 </MainLayout>

@@ -7,6 +7,17 @@ import type { TBlogPostFrontmatter } from '@types';
 const blogPosts = await Astro.glob<TBlogPostFrontmatter>(
   './posts/*.md'
 );
+const sortedBlogPosts = blogPosts.sort((a, b) => {
+  if (a.frontmatter.pubDate > b.frontmatter.pubDate) {
+    return -1;
+  }
+
+  if (a.frontmatter.pubDate < b.frontmatter.pubDate) {
+    return 1;
+  }
+
+  return 0;
+});
 ---
 
 <MainLayout
@@ -14,5 +25,5 @@ const blogPosts = await Astro.glob<TBlogPostFrontmatter>(
   description="Whenever I feel like expressing my thoughts on some topic in a more elaborate manner, I’m going to do it here."
 >
   <h1 class="font-bold text-4xl">Blog</h1>
-  <PostsList posts={blogPosts} />
+  <PostsList posts={sortedBlogPosts} />
 </MainLayout>
